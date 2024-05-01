@@ -1,18 +1,21 @@
-FROM ubuntu:24.04
+FROM alpine:3.19
 
-RUN apt-get update
+# install typst
+RUN wget https://github.com/typst/typst/releases/download/v0.11.0/typst-x86_64-unknown-linux-musl.tar.xz \
+    && tar -xf typst-x86_64-unknown-linux-musl.tar.xz \
+    && mv typst-x86_64-unknown-linux-musl/typst /usr/local/bin/
 
-RUN apt-get install -y wget xz-utils fswatch
+# install fswatch
+RUN apk add build-base
+RUN wget https://github.com/emcrisostomo/fswatch/releases/download/1.17.1/fswatch-1.17.1.tar.gz \
+    && tar -xf fswatch-1.17.1.tar.gz \
+    && cd fswatch-1.17.1 \
+    && ./configure \
+    && make \
+    && make install
 
-RUN wget https://github.com/typst/typst/releases/download/v0.11.0/typst-x86_64-unknown-linux-musl.tar.xz
-
-RUN tar -xvf typst-x86_64-unknown-linux-musl.tar.xz
-
-RUN mv typst-x86_64-unknown-linux-musl/typst /usr/local/bin/
+# install watch script
+COPY watch.sh /bin/
+RUN chmod +x /bin/watch.sh
 
 WORKDIR /src
-
-# compile typst files then incrementally compile 
-# use poll_monitor because it's more reliable than inotify with docker mounted volumes
-CMD typst compile *.typ && fswatch -0 --monitor=poll_monitor *.typ | xargs -0 -n1 -I{} typst compile "{}"
-
