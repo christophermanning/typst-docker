@@ -15,7 +15,7 @@ RUN wget https://github.com/emcrisostomo/fswatch/releases/download/1.17.1/fswatc
     && make install
 
 # install watch script
-COPY watch.sh /bin/
-RUN chmod +x /bin/watch.sh
+COPY watch.sh /usr/local/bin
+RUN chmod +x /usr/local/bin/watch.sh
 
 WORKDIR /src

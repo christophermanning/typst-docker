@@ -7,4 +7,4 @@ clean:
 	rm Dockerfile.build
 
 watch: Dockerfile.build
-	@docker run  -v ./:/src -it typst-docker /bin/watch.sh
+	@docker run  -v ./:/src -it typst-docker watch.sh
