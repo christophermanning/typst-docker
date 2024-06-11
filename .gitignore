@@ -1,3 +1,5 @@
 *.typ
 *.pdf
+*.png
+*.svg
 Dockerfile.build
