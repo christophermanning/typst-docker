@@ -1,7 +1,7 @@
 FROM alpine:3.19
 
 # install typst
-RUN wget https://github.com/typst/typst/releases/download/v0.11.0/typst-x86_64-unknown-linux-musl.tar.xz \
+RUN wget https://github.com/typst/typst/releases/download/v0.11.1/typst-x86_64-unknown-linux-musl.tar.xz \
     && tar -xf typst-x86_64-unknown-linux-musl.tar.xz \
     && mv typst-x86_64-unknown-linux-musl/typst /usr/local/bin/
 
