@@ -16,6 +16,9 @@ clean:
 watch: build
 	@docker run  -v ./:/src --rm -it ${NAME} watch.sh
 
+shell: build
+	@docker run  -v ./:/src --rm -it ${NAME} /bin/sh
+
 dev:
 	-tmux kill-session -t "${NAME}"
 	tmux new-session -s "${NAME}" -d -n vi
