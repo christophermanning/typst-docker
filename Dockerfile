@@ -17,6 +17,9 @@ RUN wget https://github.com/emcrisostomo/fswatch/releases/download/1.17.1/fswatc
     && make \
     && make install
 
+# for compressing example images
+RUN apk --no-cache add imagemagick
+
 # install watch script
 COPY watch.sh /usr/local/bin
 RUN chmod +x /usr/local/bin/watch.sh

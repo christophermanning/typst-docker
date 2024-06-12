@@ -19,6 +19,9 @@ watch: build
 shell: build
 	@docker run  -v ./:/src --rm -it ${NAME} /bin/sh
 
+example-images: build
+	@docker run  -v ./:/src --rm -it ${NAME} /bin/sh -c "cd examples/ && typst compile *.typ -f png && mogrify -thumbnail 400x *.png"
+
 dev:
 	-tmux kill-session -t "${NAME}"
 	tmux new-session -s "${NAME}" -d -n vi
