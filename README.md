@@ -6,7 +6,7 @@ Run [Typst](https://github.com/typst/typst) in Docker to recursively watch and c
 ## Running
 
 ```
-make watch
+make up
 ```
 
 

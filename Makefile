@@ -13,7 +13,7 @@ Dockerfile.build: Dockerfile watch.sh
 clean:
 	rm Dockerfile.build
 
-watch: build
+up: build
 	@docker run  -v ./:/src --rm -it ${NAME} watch.sh
 
 shell: build
@@ -28,6 +28,6 @@ dev:
 	tmux send-keys -t "${NAME}:vi" "vi" Enter
 	tmux new-window -t "${NAME}" -n shell "/bin/zsh"
 	tmux new-window -t "${NAME}" -n build
-	tmux send-keys -t "${NAME}:build" "make watch" Enter
+	tmux send-keys -t "${NAME}:build" "make up" Enter
 	tmux select-window -t "${NAME}:vi"
 	tmux attach-session -t "${NAME}"
