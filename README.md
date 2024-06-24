@@ -12,5 +12,5 @@ make up
 
 ## Examples
 
-### Hello World
-[![hello-world](examples/hello-world.png)](examples/hello-world.typ)
+[![hello-world](examples/hello-world.png)](examples/hello-world.typ) | [![resume](examples/resume.png)](examples/resume.typ)
+-- | --
